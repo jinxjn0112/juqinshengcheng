@@ -1,0 +1,199 @@
+@import url("./style.css");
+
+/* v1.1.1 tablet/phone viewport fixes */
+html:has(body.pw-no-scroll),
+body.pw-no-scroll {
+    overflow: hidden !important;
+    overscroll-behavior: none;
+}
+
+#plot_weaver_overlay.pw-overlay {
+    box-sizing: border-box;
+    overflow: hidden !important;
+    padding:
+        max(10px, env(safe-area-inset-top))
+        max(10px, env(safe-area-inset-right))
+        max(10px, env(safe-area-inset-bottom))
+        max(10px, env(safe-area-inset-left));
+}
+
+#plot_weaver_overlay .pw-panel {
+    display: flex !important;
+    flex-direction: column;
+    width: min(1380px, calc(100vw - 20px)) !important;
+    height: min(920px, calc(100dvh - 20px));
+    max-height: calc(100dvh - 20px) !important;
+    min-height: 0;
+    overflow: hidden !important;
+}
+
+#plot_weaver_overlay .pw-header {
+    flex: 0 0 auto;
+}
+
+#plot_weaver_overlay .pw-body {
+    display: grid;
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none !important;
+    overflow: hidden !important;
+}
+
+#plot_weaver_overlay .pw-workspace,
+#plot_weaver_overlay .pw-history {
+    min-height: 0;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+    scrollbar-gutter: stable;
+}
+
+#plot_weaver_overlay .pw-workspace {
+    padding-bottom: max(36px, env(safe-area-inset-bottom));
+}
+
+#plot_weaver_overlay .pw-history {
+    padding-bottom: max(28px, env(safe-area-inset-bottom));
+}
+
+#plot_weaver_overlay .pw-workspace::-webkit-scrollbar,
+#plot_weaver_overlay .pw-history::-webkit-scrollbar,
+#plot_weaver_overlay .pw-result::-webkit-scrollbar,
+#plot_weaver_overlay .pw-body::-webkit-scrollbar {
+    width: 7px;
+}
+
+#plot_weaver_overlay .pw-workspace::-webkit-scrollbar-thumb,
+#plot_weaver_overlay .pw-history::-webkit-scrollbar-thumb,
+#plot_weaver_overlay .pw-result::-webkit-scrollbar-thumb,
+#plot_weaver_overlay .pw-body::-webkit-scrollbar-thumb {
+    border-radius: 99px;
+    background: color-mix(in srgb, var(--pw-accent) 48%, transparent);
+}
+
+/* Landscape tablet: two independently scrollable panes, compact enough for short screens. */
+@media (orientation: landscape) {
+    #plot_weaver_overlay .pw-panel {
+        width: min(1420px, calc(100vw - 20px)) !important;
+        height: calc(100dvh - 20px);
+    }
+
+    #plot_weaver_overlay .pw-body {
+        grid-template-columns: minmax(0, 1fr) clamp(230px, 21vw, 300px) !important;
+    }
+
+    #plot_weaver_overlay .pw-header {
+        padding: 16px 20px 13px;
+    }
+
+    #plot_weaver_overlay .pw-workspace {
+        padding-top: 16px;
+    }
+}
+
+@media (orientation: landscape) and (max-height: 760px) {
+    #plot_weaver_overlay .pw-header {
+        padding: 10px 16px 9px;
+    }
+
+    #plot_weaver_overlay .pw-header .pw-eyebrow,
+    #plot_weaver_overlay .pw-header p:not(.pw-eyebrow) {
+        display: none;
+    }
+
+    #plot_weaver_overlay .pw-header h2 {
+        margin: 0;
+        font-size: 1.15rem;
+    }
+
+    #plot_weaver_overlay .pw-workspace {
+        padding: 12px 16px 28px;
+    }
+
+    #plot_weaver_overlay .pw-mode {
+        min-height: 58px;
+    }
+}
+
+/* Portrait tablet/phone: one natural vertical scroller. This avoids nested scroll traps. */
+@media (orientation: portrait) {
+    #plot_weaver_overlay.pw-overlay {
+        place-items: stretch !important;
+        padding: 0 !important;
+    }
+
+    #plot_weaver_overlay .pw-panel {
+        width: 100vw !important;
+        height: 100dvh !important;
+        max-height: 100dvh !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+    }
+
+    #plot_weaver_overlay .pw-header {
+        position: relative;
+        z-index: 4;
+        padding:
+            max(14px, env(safe-area-inset-top))
+            max(14px, env(safe-area-inset-right))
+            12px
+            max(14px, env(safe-area-inset-left));
+    }
+
+    #plot_weaver_overlay .pw-body {
+        display: block !important;
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y;
+    }
+
+    #plot_weaver_overlay .pw-workspace,
+    #plot_weaver_overlay .pw-history {
+        min-height: auto;
+        overflow: visible !important;
+        scrollbar-gutter: auto;
+    }
+
+    #plot_weaver_overlay .pw-history {
+        border-left: 0 !important;
+        border-top: 1px solid var(--pw-border);
+    }
+
+    #plot_weaver_overlay .pw-result {
+        max-height: min(50dvh, 520px);
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #plot_weaver_overlay .pw-enhance-grid,
+    #plot_weaver_overlay .pw-enhance-grid.two {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (orientation: portrait) and (max-width: 680px) {
+    #plot_weaver_overlay .pw-header {
+        padding-top: max(12px, env(safe-area-inset-top));
+    }
+
+    #plot_weaver_overlay .pw-mode-grid,
+    #plot_weaver_overlay .pw-control-grid,
+    #plot_weaver_overlay .pw-check-grid,
+    #plot_weaver_overlay .pw-history-list,
+    #plot_weaver_overlay .pw-enhance-grid,
+    #plot_weaver_overlay .pw-enhance-grid.two,
+    #plot_weaver_overlay .pw-refine {
+        grid-template-columns: 1fr !important;
+    }
+
+    #plot_weaver_overlay .pw-workspace {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+}
