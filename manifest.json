@@ -1,0 +1,13 @@
+{
+  "display_name": "剧情灵感工坊",
+  "loading_order": 10,
+  "requires": [],
+  "optional": [],
+  "dependencies": [],
+  "js": "index.js",
+  "css": "style.css",
+  "author": "OpenAI Codex",
+  "version": "1.0.0",
+  "auto_update": false,
+  "minimum_client_version": "1.13.0"
+}
