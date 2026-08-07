@@ -7,7 +7,7 @@
   "js": "enhance.js",
   "css": "responsive.css",
   "author": "OpenAI Codex",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "auto_update": false,
   "minimum_client_version": "1.13.0"
 }
