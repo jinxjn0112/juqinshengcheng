@@ -4,10 +4,10 @@
   "requires": [],
   "optional": [],
   "dependencies": [],
-  "js": "enhance-rules.js",
+  "js": "enhance-rules-safe.js",
   "css": "responsive.css",
   "author": "OpenAI Codex",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "auto_update": false,
   "minimum_client_version": "1.13.0"
 }
