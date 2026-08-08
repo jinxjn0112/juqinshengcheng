@@ -4,10 +4,10 @@
   "requires": [],
   "optional": [],
   "dependencies": [],
-  "js": "enhance-rules-safe.js",
-  "css": "responsive.css",
+  "js": "android-mobile.js",
+  "css": "mobile.css",
   "author": "OpenAI Codex",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "auto_update": false,
   "minimum_client_version": "1.13.0"
 }
